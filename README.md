@@ -1,5 +1,360 @@
 # SOAP Calculator Service
 
+_[Versão em Português](#versão-em-português) | [Portuguese Version](#versão-em-português)_
+
+A SOAP web service developed in Node.js to perform basic arithmetic operations (addition, subtraction, multiplication, and division).
+
+## 🎯 About the Project
+
+This project implements a web service using the SOAP protocol that allows performing the four basic arithmetic operations:
+
+- **Addition**: Sum of two numbers
+- **Subtraction**: Difference between two numbers
+- **Multiplication**: Product of two numbers
+- **Division**: Quotient of two numbers (with division by zero handling)
+
+The service exposes a WSDL file that describes all available operations and enables communication via XML.
+
+## 🚀 Technologies Used
+
+- **Node.js** - JavaScript runtime environment
+- **soap** - Library for creating SOAP services in Node.js
+- **express** - Web framework for Node.js
+- **body-parser** - Middleware for parsing requests
+
+## 📦 Prerequisites
+
+Before starting, make sure you have installed:
+
+- Node.js (version 14 or higher)
+- npm (Node Package Manager)
+- SoapUI (for testing via graphical interface) - [Download here](https://www.soapui.org/downloads/soapui/)
+
+## 🔧 Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/AbelFDias/soap-calculator-service.git
+cd soap-calculator-service
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+## ▶️ Running the Service
+
+1. Start the SOAP server:
+```bash
+node server.js
+```
+
+2. The service will be available at:
+   - **Service URL**: `http://localhost:8000/calculator`
+   - **WSDL URL**: `http://localhost:8000/calculator?wsdl`
+
+3. You will see the message in the console:
+```
+SOAP Calculator Service running on http://localhost:8000
+WSDL available at http://localhost:8000/calculator?wsdl
+```
+
+## 📁 Project Structure
+
+```
+soap-calculator-service/
+├── server.js           # Main SOAP server
+├── client.js           # Node.js test client
+├── calculator.wsdl     # Service WSDL definition
+├── package.json        # Project dependencies
+├── README.md          # Documentation
+└── examples/          # Request examples
+    └── requests.xml
+```
+
+## 🔢 Available Operations
+
+### 1. Addition (add)
+Adds two numbers.
+- **Parameters**: `a` (number), `b` (number)
+- **Return**: `result` (number)
+
+### 2. Subtraction (subtract)
+Subtracts the second number from the first.
+- **Parameters**: `a` (number), `b` (number)
+- **Return**: `result` (number)
+
+### 3. Multiplication (multiply)
+Multiplies two numbers.
+- **Parameters**: `a` (number), `b` (number)
+- **Return**: `result` (number)
+
+### 4. Division (divide)
+Divides the first number by the second.
+- **Parameters**: `a` (number), `b` (number)
+- **Return**: `result` (number)
+- **Error**: Returns error message if `b = 0`
+
+## 🧪 Testing with Node.js Client
+
+Run the included test client:
+
+```bash
+node client.js
+```
+
+The client will automatically execute all operations and display the results in the console.
+
+## 🔍 Testing with SoapUI
+
+### Step 1: Install SoapUI
+
+1. Access the official website: https://www.soapui.org/downloads/soapui/
+2. Download the **SoapUI Open Source** version (free)
+3. Install following the instructions for your operating system
+4. Run SoapUI
+
+### Step 2: Create a New SOAP Project
+
+1. **Open SoapUI**
+
+2. **Create a new SOAP project**:
+   - Click on **File** → **New SOAP Project**
+   - Or click on the **SOAP** icon in the toolbar
+
+3. **Configure the project**:
+   - **Project Name**: Enter `CalculatorService` (or any name you prefer)
+   - **Initial WSDL**: Paste the WSDL URL: `http://localhost:8000/calculator?wsdl`
+   - Check the **Create Requests** option
+   - Click **OK**
+
+4. **Wait for loading**:
+   - SoapUI will analyze the WSDL and automatically create requests for each operation
+
+### Step 3: Project Structure in SoapUI
+
+After creating the project, you will see the following structure in the tree on the left:
+
+```
+CalculatorService
+└── CalculatorServiceSoapBinding
+    ├── add
+    │   └── Request 1
+    ├── subtract
+    │   └── Request 1
+    ├── multiply
+    │   └── Request 1
+    └── divide
+        └── Request 1
+```
+
+### Step 4: Test the Addition Operation
+
+1. **Expand the tree**: `CalculatorService` → `CalculatorServiceSoapBinding` → `add`
+
+2. **Open the request**: Double-click on **Request 1**
+
+3. **You will see the request XML**:
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://localhost:8000/calculator">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:add>
+         <tns:a>?</tns:a>
+         <tns:b>?</tns:b>
+      </tns:add>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+
+4. **Replace the values**:
+   - Change `?` to real numbers, for example:
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://localhost:8000/calculator">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:add>
+         <tns:a>15</tns:a>
+         <tns:b>7</tns:b>
+      </tns:add>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+
+5. **Execute the request**:
+   - Click the green **Play** button (▶️) in the top left corner
+   - Or press **Alt + Enter**
+
+6. **View the response** (right panel):
+```xml
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <tns:addResponse xmlns:tns="http://localhost:8000/calculator">
+         <tns:result>22</tns:result>
+      </tns:addResponse>
+   </soap:Body>
+</soap:Envelope>
+```
+
+### Step 5: Test the Other Operations
+
+#### **Subtraction (subtract)**
+
+1. Expand `subtract` → Double-click on **Request 1**
+2. Edit the XML:
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://localhost:8000/calculator">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:subtract>
+         <tns:a>20</tns:a>
+         <tns:b>8</tns:b>
+      </tns:subtract>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+3. Click **Play** (▶️)
+4. Expected result: `12`
+
+#### **Multiplication (multiply)**
+
+1. Expand `multiply` → Double-click on **Request 1**
+2. Edit the XML:
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://localhost:8000/calculator">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:multiply>
+         <tns:a>6</tns:a>
+         <tns:b>7</tns:b>
+      </tns:multiply>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+3. Click **Play** (▶️)
+4. Expected result: `42`
+
+#### **Division (divide)**
+
+1. Expand `divide` → Double-click on **Request 1**
+2. Edit the XML:
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://localhost:8000/calculator">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:divide>
+         <tns:a>100</tns:a>
+         <tns:b>4</tns:b>
+      </tns:divide>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+3. Click **Play** (▶️)
+4. Expected result: `25`
+
+### Step 6: Test Division by Zero
+
+1. In the `divide` request, change the value of `b` to `0`:
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://localhost:8000/calculator">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tns:divide>
+         <tns:a>100</tns:a>
+         <tns:b>0</tns:b>
+      </tns:divide>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+
+2. Execute the request
+
+3. **Expected response (SOAP Fault)**:
+```xml
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <soap:Fault>
+         <faultcode>soap:Server</faultcode>
+         <faultstring>Division by zero is not allowed</faultstring>
+      </soap:Fault>
+   </soap:Body>
+</soap:Envelope>
+```
+
+### Step 7: Useful SoapUI Features
+
+#### **View the WSDL**
+- Right-click on the project name → **Show WSDL Viewer**
+- Or access directly: **WSDL Content** (bottom tab)
+
+#### **Create Multiple Requests**
+- Right-click on an operation (e.g., `add`)
+- Select **New Request**
+- Name the request (e.g., "Large Numbers Test")
+- Configure and save different test scenarios
+
+#### **Validate Responses**
+- **Assertions** tab in the bottom panel
+- Click the green **+** button to add validations
+- Examples:
+  - **Contains**: Check if the response contains a specific value
+  - **XPath Match**: Validate XML structure
+  - **Response SLA**: Check response time
+
+#### **View Request Log**
+- Menu **View** → **Show HTTP Log**
+- Shows all HTTP/SOAP traffic in real-time
+
+#### **Save the Project**
+- **File** → **Save Project**
+- Save the project `.xml` file for future reuse
+
+## ⚠️ Error Handling
+
+The service implements validations for:
+
+1. **Type Validation**: All parameters must be valid numbers
+2. **Division by Zero**: Returns SOAP Fault with appropriate message
+3. **Missing Parameters**: Returns error if required parameters are not provided
+
+### SOAP Error Codes
+
+- `soap:Client` - Client request error (invalid parameters)
+- `soap:Server` - Server error (division by zero, internal error)
+
+## 📚 References
+
+- [Node.js SOAP Library](https://www.npmjs.com/package/soap)
+- [SOAP Protocol Specification](https://www.w3.org/TR/soap/)
+- [SoapUI Documentation](https://www.soapui.org/docs/)
+- [WSDL Specification](https://www.w3.org/TR/wsdl/)
+
+## 👤 Authors
+
+**Abel Dias**
+- GitHub: [@AbelFDias](https://github.com/AbelFDias)
+
+**Simão Marcos**
+- GitHub: [@simarc0s](https://github.com/simarc0s)
+
+- Repository: [soap-calculator-service](https://github.com/AbelFDias/soap-calculator-service)
+
+## 📄 License
+
+This project is under the MIT license. See the LICENSE file for more details.
+
+---
+
+**Developed as an academic project for the Web Application Development course - LESTI, Ualg** 🎓
+
+---
+---
+
+# Versão em Português
+
+# SOAP Calculator Service
+
 Serviço web SOAP desenvolvido em Node.js para realizar operações aritméticas básicas (adição, subtração, multiplicação e divisão).
 
 ## 🎯 Sobre o Projeto
@@ -334,7 +689,7 @@ O serviço implementa validações para:
 - GitHub: [@AbelFDias](https://github.com/AbelFDias)
 
 **Simão Marcos**
-- GitHub: [@AbelFDias](https://github.com/simarc0s)
+- GitHub: [@simarc0s](https://github.com/simarc0s)
 
 - Repository: [soap-calculator-service](https://github.com/AbelFDias/soap-calculator-service)
 
