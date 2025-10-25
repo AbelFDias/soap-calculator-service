@@ -1,0 +1,57 @@
+<!-- Sample SOAP requests for CalculatorService operations -->
+<!-- Replace the values for <tns:a> and <tns:b> as needed -->
+
+<!-- Addition -->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://localhost:8000/calculator">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <tns:add>
+      <tns:a>10</tns:a>
+      <tns:b>5</tns:b>
+    </tns:add>
+  </soapenv:Body>
+</soapenv:Envelope>
+
+<!-- Subtraction -->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://localhost:8000/calculator">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <tns:subtract>
+      <tns:a>20</tns:a>
+      <tns:b>8</tns:b>
+    </tns:subtract>
+  </soapenv:Body>
+</soapenv:Envelope>
+
+<!-- Multiplication -->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://localhost:8000/calculator">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <tns:multiply>
+      <tns:a>6</tns:a>
+      <tns:b>7</tns:b>
+    </tns:multiply>
+  </soapenv:Body>
+</soapenv:Envelope>
+
+<!-- Division -->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://localhost:8000/calculator">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <tns:divide>
+      <tns:a>100</tns:a>
+      <tns:b>4</tns:b>
+    </tns:divide>
+  </soapenv:Body>
+</soapenv:Envelope>
+
+<!-- Division by zero example -->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tns="http://localhost:8000/calculator">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <tns:divide>
+      <tns:a>10</tns:a>
+      <tns:b>0</tns:b>
+    </tns:divide>
+  </soapenv:Body>
+</soapenv:Envelope>
