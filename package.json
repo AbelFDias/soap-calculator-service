@@ -1,0 +1,24 @@
+{
+  "name": "soap-calculator-service",
+  "version": "1.0.0",
+  "description": "SOAP web service calculator with Node.js",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "client": "node client.js",
+    "test": "npm run client"
+  },
+  "keywords": [
+    "soap",
+    "calculator",
+    "nodejs",
+    "web-service"
+  ],
+  "author": "Abel F. Dias",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.19.2",
+    "soap": "^0.45.0"
+  }
+}
