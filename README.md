@@ -2,20 +2,6 @@
 
 Serviço web SOAP desenvolvido em Node.js para realizar operações aritméticas básicas (adição, subtração, multiplicação e divisão).
 
-## 📋 Índice
-
-- [Sobre o Projeto](#sobre-o-projeto)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Pré-requisitos](#pré-requisitos)
-- [Instalação](#instalação)
-- [Executando o Serviço](#executando-o-serviço)
-- [Estrutura do Projeto](#estrutura-do-projeto)
-- [Operações Disponíveis](#operações-disponíveis)
-- [Testando com Cliente Node.js](#testando-com-cliente-nodejs)
-- [Testando com SoapUI](#testando-com-soapui)
-- [Exemplos de Requisições e Respostas](#exemplos-de-requisições-e-respostas)
-- [Tratamento de Erros](#tratamento-de-erros)
-
 ## 🎯 Sobre o Projeto
 
 Este projeto implementa um serviço web utilizando o protocolo SOAP que permite realizar as quatro operações aritméticas básicas:
